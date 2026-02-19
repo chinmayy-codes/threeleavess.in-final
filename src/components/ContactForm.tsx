@@ -10,15 +10,27 @@ const ContactForm = () => {
     e.preventDefault();
     setLoading(true);
 
-    // ✏️ INTEGRATION POINT:
-    // Replace this with your preferred email service.
-    // Option 1: EmailJS (frontend) — https://www.emailjs.com/
-    // Option 2: Backend API endpoint
-    // Example with EmailJS:
-    //   import emailjs from '@emailjs/browser';
-    //   emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', e.currentTarget, 'YOUR_PUBLIC_KEY');
+    // ✏️ EMAIL INTEGRATION using EmailJS
+    // 1. Go to https://www.emailjs.com/ and create a free account
+    // 2. Add an email service (Gmail, Outlook, etc.)
+    // 3. Create an email template with variables: {{name}}, {{email}}, {{offer}}, {{message}}
+    // 4. Replace the 3 values below with your own from the EmailJS dashboard:
+    //    - SERVICE_ID: Found in "Email Services" tab
+    //    - TEMPLATE_ID: Found in "Email Templates" tab
+    //    - PUBLIC_KEY: Found in "Account" > "API Keys" > "Public Key"
+    //
+    // Emails will be sent TO: sarveshkhairnar960@gmail.com
+    // (Set this as the recipient in your EmailJS template)
 
-    // Simulate submission
+    // import emailjs from '@emailjs/browser';
+    // await emailjs.sendForm(
+    //   'YOUR_SERVICE_ID',    // ← Replace with your Service ID
+    //   'YOUR_TEMPLATE_ID',   // ← Replace with your Template ID
+    //   e.currentTarget,
+    //   'YOUR_PUBLIC_KEY'     // ← Replace with your Public Key
+    // );
+
+    // Simulated submission (remove this once EmailJS is configured above)
     await new Promise((r) => setTimeout(r, 1200));
     setLoading(false);
     setSubmitted(true);
@@ -106,7 +118,7 @@ const ContactForm = () => {
                   name="offer"
                   maxLength={50}
                   className="w-full px-4 py-3 rounded-xl bg-secondary border border-border text-foreground font-sans text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 transition-all"
-                  placeholder="$5,000"
+                  placeholder="$100"
                 />
               </div>
 
