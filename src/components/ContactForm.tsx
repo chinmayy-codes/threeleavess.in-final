@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Send, CheckCircle } from "lucide-react";
+import emailjs from "@emailjs/browser";
 
 const ContactForm = () => {
   const [submitted, setSubmitted] = useState(false);
@@ -10,30 +11,24 @@ const ContactForm = () => {
     e.preventDefault();
     setLoading(true);
 
-    // ✏️ EMAIL INTEGRATION using EmailJS
-    // 1. Go to https://www.emailjs.com/ and create a free account
-    // 2. Add an email service (Gmail, Outlook, etc.)
-    // 3. Create an email template with variables: {{name}}, {{email}}, {{offer}}, {{message}}
-    // 4. Replace the 3 values below with your own from the EmailJS dashboard:
-    //    - SERVICE_ID: Found in "Email Services" tab
-    //    - TEMPLATE_ID: Found in "Email Templates" tab
-    //    - PUBLIC_KEY: Found in "Account" > "API Keys" > "Public Key"
-    //
-    // Emails will be sent TO: sarveshkhairnar960@gmail.com
-    // (Set this as the recipient in your EmailJS template)
+    try {
+      await emailjs.sendForm(
+        "service_evpiwp6",
+        "template_nhfvjo9",
+        e.currentTarget,
+        {
+          publicKey: "dFgOT4OjLZH_cUbdM",
+        },
+      );
 
-    // import emailjs from '@emailjs/browser';
-    // await emailjs.sendForm(
-    //   'YOUR_SERVICE_ID',    // ← Replace with your Service ID
-    //   'YOUR_TEMPLATE_ID',   // ← Replace with your Template ID
-    //   e.currentTarget,
-    //   'YOUR_PUBLIC_KEY'     // ← Replace with your Public Key
-    // );
-
-    // Simulated submission (remove this once EmailJS is configured above)
-    await new Promise((r) => setTimeout(r, 1200));
-    setLoading(false);
-    setSubmitted(true);
+      setSubmitted(true);
+      e.currentTarget.reset();
+    } catch (error) {
+      console.error("Failed to send email", error);
+      alert("Something went wrong sending your message. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -111,7 +106,8 @@ const ContactForm = () => {
 
               <div>
                 <label className="block text-sm font-sans font-medium text-foreground/80 mb-2">
-                  Offer Amount <span className="text-muted-foreground">(optional)</span>
+                  Offer Amount{" "}
+                  <span className="text-muted-foreground">(optional)</span>
                 </label>
                 <input
                   type="text"
