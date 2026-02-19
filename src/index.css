@@ -6,7 +6,7 @@
 
 @layer base {
   :root {
-    --background: 150 20% 4%;
+    --background: 150 25% 3%;
     --foreground: 150 10% 92%;
 
     --card: 150 15% 8%;
@@ -112,4 +112,28 @@
 @keyframes pulse-glow {
   0%, 100% { box-shadow: 0 0 20px hsl(152 60% 42% / 0.2); }
   50% { box-shadow: 0 0 40px hsl(152 60% 42% / 0.4); }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(30px, -20px) scale(1.05); }
+  50% { transform: translate(-10px, 20px) scale(0.95); }
+  75% { transform: translate(-30px, -10px) scale(1.02); }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 25s linear infinite;
+}
+
+.animate-drift {
+  animation: drift 20s ease-in-out infinite;
+}
+
+.animate-drift-delayed {
+  animation: drift 25s ease-in-out 5s infinite;
 }

@@ -35,7 +35,7 @@ const AcquisitionSection = () => {
           </p>
           {/* ✏️ Edit the price below */}
           <p className="text-4xl sm:text-5xl font-serif font-bold gradient-text">
-            $5,000
+            $100
           </p>
           <p className="text-muted-foreground text-sm font-sans mt-2">
             or make your best offer

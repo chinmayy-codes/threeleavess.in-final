@@ -36,7 +36,7 @@ const HeroSection = () => {
           transition={{ duration: 0.9, delay: 0.15, ease: "easeOut" }}
           className="text-5xl sm:text-7xl lg:text-8xl font-serif font-bold mb-6 glow-text gradient-text"
         >
-          threeleaves.in
+          threeleavess.in
         </motion.h1>
 
         <motion.p
